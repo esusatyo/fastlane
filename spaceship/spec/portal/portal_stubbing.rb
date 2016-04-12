@@ -70,7 +70,7 @@ def adp_stub_provisioning
 
   # tvOS Profiles
   stub_request(:post, "https://developer.apple.com/services-account/QH65B2/account/ios/profile/createProvisioningProfile.action").
-    with(:body => {"appIdId"=>"2UMR2S6PAA", "certificateIds"=>"C8DL7464RQ", "deviceIds"=>"DDDDDDDDDD", "distributionType"=>"limited", "provisioningProfileName"=>"Delete Me", "subPlatform"=>"tvos", "teamId"=>"XXXXXXXXXX"},).
+    with(:body => {"appIdId" => "2UMR2S6PAA", "certificateIds" => "C8DL7464RQ", "deviceIds" => "DDDDDDDDDD", "distributionType" => "limited", "provisioningProfileName" => "Delete Me", "subPlatform" => "tvos", "teamId" => "XXXXXXXXXX" }).
     to_return(status: 200, body: adp_read_fixture_file('create_profile_success.json'), headers: { 'Content-Type' => 'application/json' })
 end
 
