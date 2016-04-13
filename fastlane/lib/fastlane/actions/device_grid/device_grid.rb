@@ -10,8 +10,10 @@ module Danger
         # @param prefix_command: Prefix the `fastlane run appetize_url_generator` command with something
         #   this can be used to use `bundle exec`
         def run(languages: nil, devices: nil, prefix_command: nil)
-          public_key_path = "fastlane/appetize_public_key.txt"
-          public_key = File.read(public_key_path).strip if File.exist?(public_key_path)
+          public_key = nil
+          [".fastlane/appetize_public_key.txt", "fastlane/appetize_public_key.txt"].each do |current| # not using Dir[...] since it doesn't show hidden files
+            public_key = File.read(current).strip if File.exist?(current)
+          end
           UI.user_error!("No #{public_key_path} file found, make sure to run fastlane with `generate_device_grid` before calling `device_grid` in danger") if public_key.to_s.length == 0
           File.delete(public_key_path)
 
